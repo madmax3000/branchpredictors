@@ -1,0 +1,7 @@
+class Person:
+  def __init__(mysillyobject, noun, age):
+    mysillyobject.noun = noun
+    mysillyobject.age = age
+
+  def myfunc(abc):
+    print("Hello my noun is " + abc.noun)
