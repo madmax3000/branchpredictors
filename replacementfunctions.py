@@ -1,8 +1,8 @@
 
 import re
 import subprocess
-branch_pred_path = 'BranchPredictor.py'
-simplecpu_path = 'BaseSimpleCPU.py'
+branch_pred_path = 'BranchPredictor.py' #branch predictor file loaction
+simplecpu_path = 'BaseSimpleCPU.py'  #simple cpu file location
 def btbreplace(current_value , replacement_value ):
   with open(branch_pred_path, 'r') as file:
     filedata = file.read()  #file reading portion of the code
@@ -117,7 +117,7 @@ def tpb_global_replace(current_value,replacement_value):
   with open(branch_pred_path, 'r') as file:
     filedata = file.read()  #file reading portion of the code
   string1 = 'globalPredictorSize = Param.Unsigned\('
-  string2 =  ', "Size of global predictor"\)#tpb_predictor_local'
+  string2 =  ', "Size of global predictor"\)#tpb_predictor_global'
 
   pattern = string1 + str(current_value) + string2
   result = re.findall(pattern, filedata)
@@ -172,3 +172,5 @@ def branchpredictor_replacement(current_value , replacement_value ):
 
 
   return
+
+
