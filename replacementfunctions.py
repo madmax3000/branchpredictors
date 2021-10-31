@@ -1,5 +1,6 @@
 
 import re
+import subprocess
 branch_pred_path = 'BranchPredictor.py' #branch predictor file loaction
 simplecpu_path = 'BaseSimpleCPU.py'  #simple cpu file location
 def btbreplace(replacement_value ):
@@ -51,9 +52,10 @@ def btbreplace(replacement_value ):
 '''
 current_value = 1200
 replacement_value = 1300
-#btbreplace(current_value,replacement_value)
-pro1 = subprocess.Popen(["./test1.sh"],shell= True)
+#btbreplace(current_value,replacement_value) 
+pro1 = subprocess.Popen(["/home/johnj/PycharmProjects/branchpredictors/test/test1.sh"],shell= True)
 pro1.wait()
+
 pro1 = subprocess.Popen(["./test2.sh"],shell= True)
 pro1.wait()
 pro1 = subprocess.Popen(["./test3.sh"],shell= True)
