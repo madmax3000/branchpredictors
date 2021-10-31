@@ -48,12 +48,16 @@ def btbreplace(replacement_value ):
   f.close()
   return
 
-
 '''
+
 current_value = 1200
 replacement_value = 1300
 #btbreplace(current_value,replacement_value) 
 
+def fun2():
+  pro1 = subprocess.Popen(["./test1.sh"], shell=True, cwd="/home/johnj/PycharmProjects/branchpredictors/block")
+  pro1.wait()
+  return
 pro1 = subprocess.Popen(["./test1.sh"],shell= True,cwd = "/home/johnj/PycharmProjects/branchpredictors/block")
 pro1.wait()
 
@@ -61,10 +65,9 @@ pro1 = subprocess.Popen(["./test2.sh"],shell= True ,cwd = "/home/johnj/PycharmPr
 pro1.wait()
 pro1 = subprocess.Popen(["./test3.sh"],shell= True,cwd = "/home/johnj/PycharmProjects/branchpredictors")
 pro1.wait()
-
-pro1 = subprocess.Popen(["./test1.sh"],shell= True , cwd = "/home/johnj/PycharmProjects/branchpredictors/block")
+pro1 = subprocess.Popen(["./runGem5.sh"],shell= True ,cwd = "/home/johnj/PycharmProjects/branchpredictors")
 pro1.wait()
-
+fun2()
 '''
 def lbp_local_replace(replacement_value ):
   with open(branch_pred_path, 'r') as file:
@@ -201,12 +204,12 @@ def bi_choice_replace(replacement_value):
   f.write(filedata)  # writing back into the file
   f.close()
   return
-def tpb_choice_replace(replacement_value):
+def tbp_choice_replace(replacement_value):
   with open(branch_pred_path, 'r') as file:
     filedata = file.read()
 
 
-  finaltag = ".*#tpb_predictor_choice$"
+  finaltag = ".*#tbp_predictor_choice$"
   value = re.split("\n", filedata)
   array1 = []
   # print(value)
@@ -245,12 +248,12 @@ def tpb_choice_replace(replacement_value):
   f.write(filedata)  # writing back into the file
   f.close()
   return
-def tpb_global_replace(replacement_value):
+def tbp_global_replace(replacement_value):
   with open(branch_pred_path, 'r') as file:
     filedata = file.read()
 
 
-  finaltag = ".*#tpb_predictor_global$"
+  finaltag = ".*#tbp_predictor_global$"
   value = re.split("\n", filedata)
   array1 = []
   # print(value)
@@ -289,12 +292,12 @@ def tpb_global_replace(replacement_value):
   f.write(filedata)  # writing back into the file
   f.close()
   return
-def tpb_local_replace(replacement_value ):
+def tbp_local_replace(replacement_value ):
   with open(branch_pred_path, 'r') as file:
     filedata = file.read()
 
 
-  finaltag = ".*#tpb_predictor_local$"
+  finaltag = ".*#tbp_predictor_local$"
   value = re.split("\n", filedata)
   array1 = []
   # print(value)
@@ -360,7 +363,7 @@ btbreplace(2048)
 bi_choice_replace(2048)
 bi_global_replace(2048)
 lbp_local_replace(2048)
-tpb_local_replace(2048)
-tpb_choice_replace(2048)
-tpb_global_replace(2048)
+tbp_local_replace(2048)
+tbp_choice_replace(2048)
+tbp_global_replace(2048)
 '''

@@ -59,7 +59,7 @@ class BranchPredictor(SimObject):
     abstract = True
 
     numThreads = Param.Unsigned(Parent.numThreads, "Number of threads")
-    BTBEntries = Param.Unsigned(3000, "Number of BTB entries")#btbentries
+    BTBEntries = Param.Unsigned(1000, "Number of BTB entries")#btbentries
     BTBTagSize = Param.Unsigned(16, "Size of the BTB tags, in bits")#ammavan
     RASSize = Param.Unsigned(16, "RAS size")
     instShiftAmt = Param.Unsigned(2, "Number of bits to shift instructions by")
@@ -81,12 +81,12 @@ class TournamentBP(BranchPredictor):
     cxx_class = 'gem5::branch_prediction::TournamentBP'
     cxx_header = "cpu/pred/tournament.hh"
 
-    localPredictorSize = Param.Unsigned(1000, "Size of local predictor")#tpb_predictor_local
+    localPredictorSize = Param.Unsigned(1000, "Size of local predictor")#tbp_predictor_local
     localCtrBits = Param.Unsigned(2, "Bits per counter")
     localHistoryTableSize = Param.Unsigned(2048, "size of local history table")
-    globalPredictorSize = Param.Unsigned(1000, "Size of global predictor")#tpb_predictor_global
+    globalPredictorSize = Param.Unsigned(1000, "Size of global predictor")#tbp_predictor_global
     globalCtrBits = Param.Unsigned(2, "Bits per counter")
-    choicePredictorSize = Param.Unsigned(1000, "Size of choice predictor")#tpb_predictor_choice
+    choicePredictorSize = Param.Unsigned(1000, "Size of choice predictor")#tbp_predictor_choice
     choiceCtrBits = Param.Unsigned(2, "Bits of choice counters")
 
 
