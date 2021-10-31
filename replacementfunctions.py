@@ -53,13 +53,18 @@ def btbreplace(replacement_value ):
 current_value = 1200
 replacement_value = 1300
 #btbreplace(current_value,replacement_value) 
-pro1 = subprocess.Popen(["/home/johnj/PycharmProjects/branchpredictors/test/test1.sh"],shell= True)
+
+pro1 = subprocess.Popen(["./test1.sh"],shell= True,cwd = "/home/johnj/PycharmProjects/branchpredictors/block")
 pro1.wait()
 
-pro1 = subprocess.Popen(["./test2.sh"],shell= True)
+pro1 = subprocess.Popen(["./test2.sh"],shell= True ,cwd = "/home/johnj/PycharmProjects/branchpredictors")
 pro1.wait()
-pro1 = subprocess.Popen(["./test3.sh"],shell= True)
+pro1 = subprocess.Popen(["./test3.sh"],shell= True,cwd = "/home/johnj/PycharmProjects/branchpredictors")
 pro1.wait()
+
+pro1 = subprocess.Popen(["./test1.sh"],shell= True , cwd = "/home/johnj/PycharmProjects/branchpredictors/block")
+pro1.wait()
+
 '''
 def lbp_local_replace(replacement_value ):
   with open(branch_pred_path, 'r') as file:

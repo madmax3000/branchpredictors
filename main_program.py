@@ -42,13 +42,13 @@ tpb_global_array = [1000,2000,3000]
 def local_bp_run_and_copy(i):
     print("************************\nstarting run and copy commands\n *******************************8")
 
-    shell_script_command = benchmark_directory + "/runGem5.sh"  # script location # have to look into the location information
+    shell_script_command = benchmark_directory # script location # have to look into the location information
     #shell_script_command = "/home/johnj/PycharmProjects/branchpredictors/test2.sh"
     #pro1 = subprocess.Popen([shell_script_command], shell=True)
     #pro1.wait()
     #shell_script_command = "/home/johnj/PycharmProjects/branchpredictors/test3.sh"
     
-    pro1 = subprocess.Popen([shell_script_command], shell=True)
+    pro1 = subprocess.Popen(["rungem5.sh"],cwd = shell_script_command, shell=True)
     pro1.wait()
     br_directory = localbp_predictor
     src_config_path = benchmark_directory + "/m5out/config.ini"
@@ -272,3 +272,5 @@ for i in range(len(bi_choice_array)):
     tbp_bp_run_and_copy(k)
 
 print("\n\n program has sucessfully ran and all possible data values are collected ")
+
+branchpredictor_replacement(tbp_predictor,bp_string)
