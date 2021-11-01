@@ -3,14 +3,17 @@ import shutil
 import os
 from replacementfunctions import *
 global pro1
-localbp_predictor = "LocalBP"
-bi_predictor = 'BiModeBP'
-tbp_predictor = 'TournamentBP'
+localbp_predictor = "LocalBP()"
+bi_predictor = 'BiModeBP()'
+tbp_predictor = 'TournamentBP()'
 bp_string = "NULL"
 benchmark_directory = "/home/johnj/gem5/m5out/benchmarks/458.sjeng"
 gem5_directory = '/home/johnj/gem5'
-build_command = "scons build/X86/gem5.opt -j 4"
-run_command = "time /home/johnj/gem5/build/X86/gem5.opt -d /home/johnj/gem5/m5out/benchmarks/458.sjeng/output /home/johnj/gem5/configs/example/se.py -c /home/johnj/gem5/m5out/benchmarks/458.sjeng/src/benchmark -o /home/johnj/gem5/m5out/benchmarks/458.sjeng/data/test.txt -I 1000 --cpu-type=TimingSimpleCPU --caches --l2cache --l1d_size=128kB --l1i_size=128kB --l2_size=1MB --l1d_assoc=2 --l1i_assoc=2 --l2_assoc=1 --cacheline_size=64"
+
+benchmark_script = "./runGem5_458.sh"
+
+#build_command = "scons build/X86/gem5.opt -j 4"
+#run_command = "time /home/johnj/gem5/build/X86/gem5.opt -d /home/johnj/gem5/m5out/benchmarks/458.sjeng/output /home/johnj/gem5/configs/example/se.py -c /home/johnj/gem5/m5out/benchmarks/458.sjeng/src/benchmark -o /home/johnj/gem5/m5out/benchmarks/458.sjeng/data/test.txt -I 1000 --cpu-type=TimingSimpleCPU --caches --l2cache --l1d_size=128kB --l1i_size=128kB --l2_size=1MB --l1d_assoc=2 --l1i_assoc=2 --l2_assoc=1 --cacheline_size=64"
 try:
     os.mkdir(benchmark_directory + "/output")
 except OSError as error:
@@ -50,8 +53,7 @@ def local_bp_run_and_copy(i):
     #pro1.wait()
     #shell_script_command = "/home/johnj/PycharmProjects/branchpredictors/test3.sh"
     
-    pro1 = subprocess.Popen([run_command], shell=True)
-    pro1.wait()
+    os.system(benchmark_script)
     br_directory = localbp_predictor
     src_config_path = benchmark_directory + "/m5out/config.ini"
     dst_config_path = benchmark_directory + "/output/" + br_directory + "/config_" + str(i) + ".ini"
@@ -73,8 +75,7 @@ def bi_bp_run_and_copy(i):
     # pro1.wait()
     # shell_script_command = "/home/johnj/PycharmProjects/branchpredictors/test3.sh"
 
-    pro1 = subprocess.Popen([run_command], shell=True)
-    pro1.wait()
+    os.system(benchmark_script)
     br_directory = bi_predictor
     src_config_path = benchmark_directory + "/m5out/config.ini"
     dst_config_path = benchmark_directory + "/output/" + br_directory + "/config_" + str(i) + ".ini"
@@ -95,8 +96,7 @@ def tbp_bp_run_and_copy(i):
     # pro1.wait()
     # shell_script_command = "/home/johnj/PycharmProjects/branchpredictors/test3.sh"
 
-    pro1 = subprocess.Popen([run_command], shell=True)
-    pro1.wait()
+    os.system(benchmark_script)
     br_directory = tbp_predictor
     src_config_path = benchmark_directory + "/m5out/config.ini"
     dst_config_path = benchmark_directory + "/output/" + br_directory + "/config_" + str(i) + ".ini"
@@ -144,6 +144,8 @@ for i in range(len(lbp_local_array)):
     k = " btb_C_:_lbp_X_:_"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("scons build/X86/gem5.opt -j 4")
+    print("build sucessfull")
     local_bp_run_and_copy(k) 
 '''    
 shell_script_command = "/home/johnj/PycharmProjects/branchpredictors/test1.sh"
@@ -161,6 +163,7 @@ for i in range(len(btb_entry_array)):
     k = " btb_X_:_lbp_C:_" + "iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True , cwd = gem5_directory)
     #pro1.wait()
+    os.system("scons build/X86/gem5.opt -j 4")
     local_bp_run_and_copy(k)
 
 print(" local branch predictor combinations are  done")
@@ -201,6 +204,7 @@ for i in range(len(bi_choice_array)):
     k = " btb_C_:_bi_global_C_:_bi_choice_X"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("scons build/X86/gem5.opt -j 4")
     bi_bp_run_and_copy(k)
 
 print("\n\n\n\n btb entry and choice values are constant")
@@ -214,6 +218,7 @@ for i in range(len(bi_global_array)):
     k = " btb_C_:_bi_global_X_:_bi_choice_C"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("scons build/X86/gem5.opt -j 4")
     bi_bp_run_and_copy(k)
 print("\n\n\n global and choice values are constnat")
 for i in range(len(btb_entry_array)):
@@ -226,6 +231,7 @@ for i in range(len(btb_entry_array)):
     k = " btb_X_:_bi_global_C_:_bi_choice_C"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("scons build/X86/gem5.opt -j 4")
     bi_bp_run_and_copy(k)
 
 print("\n bi mode predcicton calculations are done")
@@ -258,6 +264,7 @@ for i in range(len(bi_choice_array)):
     k = " btb_C_:_tpb_local_C:_tpb_global_C_:_tpb_choice_X"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("scons build/X86/gem5.opt -j 4")
     tbp_bp_run_and_copy(k)
 print(" btb entry ,local  ,choice values are constant")
 for i in range(len(bi_choice_array)):
@@ -272,6 +279,7 @@ for i in range(len(bi_choice_array)):
     k = " btb_C_:_tpb_local_C:_tpb_global_X_:_tpb_choice_C"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("scons build/X86/gem5.opt -j 4")
     tbp_bp_run_and_copy(k)
 print(" btb entry ,global  ,choice values are constant")
 for i in range(len(bi_choice_array)):
@@ -286,6 +294,7 @@ for i in range(len(bi_choice_array)):
     k = " btb_C_:_tpb_local_X:_tpb_global_C_:_tpb_choice_C"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("scons build/X86/gem5.opt -j 4")
     tbp_bp_run_and_copy(k)
 print(" local ,global  ,choice values are constant")
 for i in range(len(bi_choice_array)):
@@ -300,6 +309,7 @@ for i in range(len(bi_choice_array)):
     k = " btb_C_:_tpb_local_X:_tpb_global_C_:_tpb_choice_C"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("scons build/X86/gem5.opt -j 4")
     tbp_bp_run_and_copy(k)
 
 print("\n\n program has sucessfully ran and all possible data values are collected ")

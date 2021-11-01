@@ -59,7 +59,7 @@ class BranchPredictor(SimObject):
     abstract = True
 
     numThreads = Param.Unsigned(Parent.numThreads, "Number of threads")
-    BTBEntries = Param.Unsigned(1000, "Number of BTB entries")#btbentries
+    BTBEntries = Param.Unsigned(3000, "Number of BTB entries")#btbentries
     BTBTagSize = Param.Unsigned(16, "Size of the BTB tags, in bits")#ammavan
     RASSize = Param.Unsigned(16, "RAS size")
     instShiftAmt = Param.Unsigned(2, "Number of bits to shift instructions by")
