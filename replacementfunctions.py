@@ -2,7 +2,7 @@
 import re
 import subprocess
 branch_pred_path = '/home/johnj/gem5/src/cpu/pred/BranchPredictor.py' #branch predictor file loaction
-simplecpu_path = '/home/johnj/gem5/src/cpu/simple/BaseSimpleCPU.py'  #simple cpu file location
+simplecpu_path = 'BaseSimpleCPU.py'  #simple cpu file location
 def btbreplace(replacement_value ):
   with open(branch_pred_path, 'r') as file:
     filedata = file.read()
@@ -368,4 +368,6 @@ lbp_local_replace(2048)
 tbp_local_replace(2048)
 tbp_choice_replace(2048)
 tbp_global_replace(2048)
+
 '''
+branchpredictor_replacement('TournamentBP\(\)','BiModeBP()')

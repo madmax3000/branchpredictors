@@ -7,3 +7,6 @@
 6. main program.py and replacementfunctions.py has to be kept in the gem5directory.
 7. the output files are configured to be saved in the benchmark directory/output  so you have to make sure you set this directory  is the output directory when you call the program
 8. runGem5_458.sh , runGem5_470.sh in the gem5 directories along with the files we needed. rungem5_429 and other will  be found in gem5 scripts
+9. in rungem5_458.sh make sure the paths refernaes to the same location.
+10. always make sure the paths are specified.
+11. if the program breaks in between make sure you repeat step 4.

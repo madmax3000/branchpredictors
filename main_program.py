@@ -191,7 +191,7 @@ print("bi mode predictor mode \n")
 
 # bi mode predictor
 
-branchpredictor_replacement(localbp_predictor,bi_predictor)
+branchpredictor_replacement("LocalBP\(\)",bi_predictor)
 
 print(" btb entry  and global values are constant")
 for i in range(len(bi_choice_array)):
@@ -248,7 +248,7 @@ print("\n****************************************************\n*****************
 
 
 
-branchpredictor_replacement(bi_predictor,tbp_predictor)
+branchpredictor_replacement('BiModeBP\(\)',tbp_predictor)
 
 print("\n tournamnet predictor calculations would be starting")
 print(" btb entry ,local  ,global values are constant")
@@ -314,4 +314,4 @@ for i in range(len(bi_choice_array)):
 
 print("\n\n program has sucessfully ran and all possible data values are collected ")
 
-branchpredictor_replacement(tbp_predictor,bp_string)
+branchpredictor_replacement('TournamentBP\(\)',bp_string)
