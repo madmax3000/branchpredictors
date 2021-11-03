@@ -7,10 +7,10 @@ localbp_predictor = "LocalBP()"
 bi_predictor = 'BiModeBP()'
 tbp_predictor = 'TournamentBP()'
 bp_string = "NULL"
-benchmark_directory = "/home/johnj/gem5/m5out/benchmarks/458.sjeng"
-gem5_directory = '/home/johnj/gem5'
+benchmark_directory = "/home/johnj/gem5/m5out/benchmarks/458.sjeng"  #location of bench mark directory
+gem5_directory = '/home/johnj/gem5'    # location of the gem5  directory
 
-benchmark_script = "./runGem5_458.sh"
+benchmark_script = "./runGem5_470.sh"  # enter the script command which you have to run
 
 #build_command = "scons build/X86/gem5.opt -j 4"
 #run_command = "time /home/johnj/gem5/build/X86/gem5.opt -d /home/johnj/gem5/m5out/benchmarks/458.sjeng/output /home/johnj/gem5/configs/example/se.py -c /home/johnj/gem5/m5out/benchmarks/458.sjeng/src/benchmark -o /home/johnj/gem5/m5out/benchmarks/458.sjeng/data/test.txt -I 1000 --cpu-type=TimingSimpleCPU --caches --l2cache --l1d_size=128kB --l1i_size=128kB --l2_size=1MB --l1d_assoc=2 --l1i_assoc=2 --l2_assoc=1 --cacheline_size=64"
@@ -35,13 +35,14 @@ print(" we have went through")
 
 #______________________________________________________________________________________________________
 #specify the previous values
-btb_entry_array  = [1000,2000,3000]
-lbp_local_array = [1000,2000,3000]
-bi_choice_array = [1000,2000,3000]
-bi_global_array = [1000,2000,3000]
-tbp_local_array = [1000,2000,3000]
-tbp_choice_array = [1000,2000,3000]
-tbp_global_array = [1000,2000,3000]
+
+btb_entry_array  = [512,1024,2048,4096,8192]
+lbp_local_array = [512,1024,2048,4096,8192]
+bi_choice_array = [512,1024,2048,4096,8192]
+bi_global_array = [512,1024,2048,4096,8192]
+tbp_local_array = [512,1024,2048,4096,8192]
+tbp_choice_array = [512,1024,2048,4096,8192]
+tbp_global_array = [512,1024,2048,4096,8192]
 
 
 def local_bp_run_and_copy(i):
@@ -144,6 +145,7 @@ for i in range(len(lbp_local_array)):
     k = " btb_C_:_lbp_X_:_"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("rm -rf build")
     os.system("scons build/X86/gem5.opt -j 4")
     print("build sucessfull")
     local_bp_run_and_copy(k) 
@@ -163,6 +165,7 @@ for i in range(len(btb_entry_array)):
     k = " btb_X_:_lbp_C:_" + "iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True , cwd = gem5_directory)
     #pro1.wait()
+    os.system("rm -rf build") #remove build command
     os.system("scons build/X86/gem5.opt -j 4")
     local_bp_run_and_copy(k)
 
@@ -204,6 +207,7 @@ for i in range(len(bi_choice_array)):
     k = " btb_C_:_bi_global_C_:_bi_choice_X"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("rm -rf build")
     os.system("scons build/X86/gem5.opt -j 4")
     bi_bp_run_and_copy(k)
 
@@ -218,6 +222,7 @@ for i in range(len(bi_global_array)):
     k = " btb_C_:_bi_global_X_:_bi_choice_C"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("rm -rf build")
     os.system("scons build/X86/gem5.opt -j 4")
     bi_bp_run_and_copy(k)
 print("\n\n\n global and choice values are constnat")
@@ -231,6 +236,7 @@ for i in range(len(btb_entry_array)):
     k = " btb_X_:_bi_global_C_:_bi_choice_C"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("rm -rf build")
     os.system("scons build/X86/gem5.opt -j 4")
     bi_bp_run_and_copy(k)
 
@@ -264,6 +270,7 @@ for i in range(len(bi_choice_array)):
     k = " btb_C_:_tpb_local_C:_tpb_global_C_:_tpb_choice_X"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("rm -rf build")
     os.system("scons build/X86/gem5.opt -j 4")
     tbp_bp_run_and_copy(k)
 print(" btb entry ,local  ,choice values are constant")
@@ -279,6 +286,7 @@ for i in range(len(bi_choice_array)):
     k = " btb_C_:_tpb_local_C:_tpb_global_X_:_tpb_choice_C"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("rm -rf build")
     os.system("scons build/X86/gem5.opt -j 4")
     tbp_bp_run_and_copy(k)
 print(" btb entry ,global  ,choice values are constant")
@@ -294,6 +302,7 @@ for i in range(len(bi_choice_array)):
     k = " btb_C_:_tpb_local_X:_tpb_global_C_:_tpb_choice_C"+"iteration_" + str(i)
     #pro1 = subprocess.Popen(["scons build/X86/gem5.opt -j 4"], shell=True, cwd=gem5_directory)
     #pro1.wait()
+    os.system("rm -rf build")
     os.system("scons build/X86/gem5.opt -j 4")
     tbp_bp_run_and_copy(k)
 print(" local ,global  ,choice values are constant")
