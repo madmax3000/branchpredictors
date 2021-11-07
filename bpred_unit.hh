@@ -311,11 +311,11 @@ class BPredUnit : public SimObject
         statistics::Scalar indirectHits;
         /** Stat for the number of indirect target misses.*/
         statistics::Scalar indirectMisses;
-        /** Stat for the number of indirect target mispredictions.*/
+        /** Stat for the percentage of indirect target mispredictions.*/
         statistics::Scalar indirectMispredicted;
-        
+        /** Stat for the number of BTBMisspercent.*/
         statistics::Formula BTBMissPct;
-        
+        /**Stat for the percentage of BranchMispredpercent.*/ 
         statistics::Formula BranchMispredPercent;
     } stats;
 
